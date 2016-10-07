@@ -1,4 +1,4 @@
-﻿//Robert
+﻿//Robert is not stupid.
 using System;
 using System.Collections.Generic;
 using System.Linq;
