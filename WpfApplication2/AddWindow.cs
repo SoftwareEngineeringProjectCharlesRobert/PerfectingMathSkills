@@ -11,26 +11,41 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Documents;
-
+using System.Windows.Input;
 
 namespace WpfApplication2
 {
     public class AddWindow : Window
     {
 
+        Random randomNum = new Random();
+
         public int getTopNum(int max)
         {               //max will be one more than difficulty bounds
-            Random randomNum = new Random();
             int number = randomNum.Next(max);
             return number;
         }
 
         public int getBotNum(int max)
         {               //max will be one more than difficulty bounds
-            Random randomNum = new Random();
-            max = max - 1;
             int number = randomNum.Next(max);
             return number;
+        }
+
+        public void EnterButton(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                string userInput = AnswerBox.Text;
+                if (solution.ToString() == userInput)
+                {
+                    Console.Write("Correct");
+                }
+                else
+                    Console.Write("Try Again");
+                e.Handled = true;
+
+            }
         }
 
         public AddWindow()
@@ -48,7 +63,8 @@ namespace WpfApplication2
             TopNum.FontSize = 100;
             TopNum.FontFamily = new FontFamily("Cooper Black");
             TopNum.TextAlignment = TextAlignment.Right;
-            TopNum.Text += getTopNum(26);
+            int top = getTopNum(26);
+            TopNum.Text += top;
             TopNum.Height = 120;
             TopNum.Width = 300;
 
@@ -58,9 +74,12 @@ namespace WpfApplication2
             BottomNum.FontSize = 100;
             BottomNum.FontFamily = new FontFamily("Cooper Black");
             BottomNum.TextAlignment = TextAlignment.Right;
-            BottomNum.Text += getBotNum(26);
+            int bot = getBotNum(26);
+            BottomNum.Text += bot;
             BottomNum.Height = 120;
             BottomNum.Width = 300;
+
+            int solution = top + bot;
 
             TextBlock Symbol = new TextBlock ();
             Symbol.Background = Brushes.SteelBlue;
@@ -87,6 +106,7 @@ namespace WpfApplication2
             addition.Content = addWindowGrid;
             addition.Show();
 
+           
         }
     }
 }
