@@ -134,8 +134,7 @@ namespace WpfApplication2
             addition.Content = addWindowGrid;
             addition.Show();
 
-
-           
+            Enter.Click += Button_Click;
         }
     } 
 }
