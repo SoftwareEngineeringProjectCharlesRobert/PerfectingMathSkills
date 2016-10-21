@@ -12,11 +12,47 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Controls.Primitives;
 
 namespace WpfApplication2
 {
-    public class AddWindow : Window
+
+    public class AddWindow
     {
+        private int solution;
+        private int userAnswer;
+        private Window addition = new Window();
+            
+        private TextBlock TopNum = new TextBlock { };
+        private TextBlock BottomNum = new TextBlock { };
+        private TextBlock Symbol = new TextBlock();
+        private TextBox AnswerBox = new TextBox();
+
+        private Button Enter = new Button { };
+
+        public void Button_Click(object sender, RoutedEventArgs e)
+        {
+            userAnswer = Convert.ToInt32(AnswerBox.Text);
+            if(userAnswer == solution)
+            {
+                Window correct = new Window { };
+                TextBlock right = new TextBlock { };
+                right.Text += "Correct";
+                right.Background = Brushes.Firebrick;
+                correct.Content = right;
+                correct.Show();
+            }
+            else
+            {
+                Window incorrect = new Window { };
+                TextBlock wrong = new TextBlock { };
+                wrong.Text += "stupid";
+                wrong.Background = Brushes.CornflowerBlue;
+                incorrect.Content = wrong;
+                incorrect.Show();
+            }
+        }
+
 
         Random randomNum = new Random();
 
@@ -32,32 +68,16 @@ namespace WpfApplication2
             return number;
         }
 
-        public void EnterButton(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                string userInput = AnswerBox.Text;
-                if (solution.ToString() == userInput)
-                {
-                    Console.Write("Correct");
-                }
-                else
-                    Console.Write("Try Again");
-                e.Handled = true;
-
-            }
-        }
+    
 
         public AddWindow()
         {
-            Window addition = new Window();
             addition.ResizeMode = ResizeMode.NoResize;
             addition.WindowState = WindowState.Maximized;
 
             Grid addWindowGrid = new Grid { };
             addition.Background = Brushes.SteelBlue;
 
-            TextBlock TopNum = new TextBlock { };
             TopNum.Margin = new Thickness(400, 0, 150, 400);
             //TopNum.Background = Brushes.White;
             TopNum.FontSize = 100;
@@ -68,7 +88,6 @@ namespace WpfApplication2
             TopNum.Height = 120;
             TopNum.Width = 300;
 
-            TextBlock BottomNum = new TextBlock { };
             BottomNum.Margin = new Thickness(400, 0, 150, 50);
             //BottomNum.Background = Brushes.White;
             BottomNum.FontSize = 100;
@@ -79,9 +98,8 @@ namespace WpfApplication2
             BottomNum.Height = 120;
             BottomNum.Width = 300;
 
-            int solution = top + bot;
+            solution = top + bot;
 
-            TextBlock Symbol = new TextBlock ();
             Symbol.Background = Brushes.SteelBlue;
             Symbol.Height = 120;
             Symbol.Width = 60;
@@ -91,22 +109,33 @@ namespace WpfApplication2
             Symbol.Text += "+";
 
 
-            TextBox AnswerBox = new TextBox();
+            
             AnswerBox.Margin = new Thickness(400, 400, 150, 0);
             AnswerBox.FontFamily = new FontFamily("Cooper Black");
             AnswerBox.Height = 120;
             AnswerBox.Width = 300;
             AnswerBox.FontSize = 100;
+
+           
+            Enter.Content = "Enter";
+            Enter.FontSize = 100;
+            Enter.Height = 120;
+            Enter.Width = 300;
+            Enter.FontFamily = new FontFamily("Cooper Black");
+            Enter.Margin = new Thickness(400, 650, 150, 0);
+            Enter.Background = Brushes.LimeGreen;
            
 
             addWindowGrid.Children.Add(BottomNum);
             addWindowGrid.Children.Add(TopNum);
             addWindowGrid.Children.Add(Symbol);
             addWindowGrid.Children.Add(AnswerBox);
+            addWindowGrid.Children.Add(Enter);
             addition.Content = addWindowGrid;
             addition.Show();
 
+
            
         }
-    }
+    } 
 }
