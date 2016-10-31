@@ -167,86 +167,9 @@ namespace WpfApplication2
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
 
-           /*Button num1 = new Button { };
-            Button num2 = new Button { };
-            Button num3 = new Button { };
-            Button num4 = new Button { };
-            Button num5 = new Button { };
-            Button num6 = new Button { };
-            Button num7 = new Button { };
-            Button num8 = new Button { };
-            Button num9 = new Button { };*/
-
             Button backspace = new Button { };
             Button clear = new Button { };
-
-
-
-            /*num1.Background = Brushes.Black;
-            num1.Content += "1";
-            num1.FontFamily = new FontFamily("Cooper Black");
-            num1.FontSize = 100;
-            num1.Foreground = Brushes.White;
-
-
-            num2.Background = Brushes.Black;
-            num2.Content += "2";
-            num2.FontSize = 100;
-            num2.FontFamily = new FontFamily("Cooper Black");
-            num2.Foreground = Brushes.White;
-
-            num3.Background = Brushes.Black;
-            num3.Content += "3";
-            num3.FontSize = 100;
-            num3.FontFamily = new FontFamily("Cooper Black");
-            num3.Foreground = Brushes.White;
-
-            num4.Background = Brushes.Black;
-            num4.Content += "4";
-            num4.FontSize = 100;
-            num4.FontFamily = new FontFamily("Cooper Black");
-            num4.Foreground = Brushes.White;
-
-            num5.Background = Brushes.Black;
-            num5.Content += "5";
-            num5.FontSize = 100;
-            num5.FontFamily = new FontFamily("Cooper Black");
-            num5.Foreground = Brushes.White;
-
-            num6.Background = Brushes.Black;
-            num6.Content += "6";
-            num6.FontSize = 100;
-            num6.FontFamily = new FontFamily("Cooper Black");
-            num6.Foreground = Brushes.White;
-
-            num7.Background = Brushes.Black;
-            num7.Content += "7";
-            num7.FontSize = 100;
-            num7.FontFamily = new FontFamily("Cooper Black");
-            num7.Foreground = Brushes.White;
-
-            num8.Background = Brushes.Black;
-            num8.Content += "8";
-            num8.FontSize = 100;
-            num8.FontFamily = new FontFamily("Cooper Black");
-            num8.Foreground = Brushes.White;
-
-            num9.Background = Brushes.Black;
-            num9.Content += "9";
-            num9.FontSize = 100;
-            num9.FontFamily = new FontFamily("Cooper Black");
-            num9.Foreground = Brushes.White;
-
-            numberPad.Children.Add(num1);
-            numberPad.Children.Add(num2);
-            numberPad.Children.Add(num3);
-            numberPad.Children.Add(num4);
-            numberPad.Children.Add(num5);
-            numberPad.Children.Add(num6);
-            numberPad.Children.Add(num7);
-            numberPad.Children.Add(num8);
-            numberPad.Children.Add(num9);*/
-
+            
             Button num;
             int i = 0;
 
@@ -266,6 +189,7 @@ namespace WpfApplication2
                     num.FontSize = 100;
                     num.HorizontalAlignment = HorizontalAlignment.Center;
                     num.VerticalAlignment = VerticalAlignment.Center;
+                    num.Click += Num_Click;
 
                     num.SetValue(Grid.ColumnProperty, col);
                     num.SetValue(Grid.RowProperty, row);
@@ -273,8 +197,12 @@ namespace WpfApplication2
                     numberPad.Children.Add(num);
                 }
             }
-
             return numberPad;
+        }
+
+        private void Num_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public AddWindow()
@@ -333,25 +261,6 @@ namespace WpfApplication2
             Enter.FontFamily = new FontFamily("Cooper Black");
             Enter.Margin = new Thickness(475, 650, 75, 0);
             Enter.Background = Brushes.LimeGreen;
-
-            /*Grid buttonGrid = new Grid();
-            ColumnDefinition col1 = new ColumnDefinition();
-            col1.Width = GridLength.Auto;
-            ColumnDefinition col2 = new ColumnDefinition();
-            col2.Width = GridLength.Auto;
-            ColumnDefinition col3 = new ColumnDefinition();
-            col3.Width = GridLength.Auto;
-
-            RowDefinition row1 = new RowDefinition();
-            RowDefinition row2 = new RowDefinition();
-            RowDefinition row3 = new RowDefinition();
-            RowDefinition row4 = new RowDefinition();
-
-            buttonGrid.ColumnDefinitions.Add(col1);
-            buttonGrid.ColumnDefinitions.Add(col2);
-            buttonGrid.ColumnDefinitions.Add(col3);
-
-            addWindowGrid.Children.Add(buttonGrid);*/
 
             Grid numberPad = numpad();
 
