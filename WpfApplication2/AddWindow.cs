@@ -32,7 +32,8 @@ namespace WpfApplication2
         private TextBox AnswerBox = new TextBox();
 
         private Button Enter = new Button { };
-
+        private Button zero = new Button();
+        private Button backspace = new Button();
 
         Random randomNum = new Random();
         int top;
@@ -190,6 +191,7 @@ namespace WpfApplication2
                     num.FontSize = 100;
                     num.HorizontalAlignment = HorizontalAlignment.Center;
                     num.VerticalAlignment = VerticalAlignment.Center;
+
                     if (buttonCounter == 1)
                         num.Click += one_Click;
                     else if (buttonCounter == 2)
@@ -268,6 +270,11 @@ namespace WpfApplication2
             AnswerBox.Text += "0";
         }
 
+        private void backspace_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text = AnswerBox.Text.Remove(AnswerBox.Text.Length - 1);
+        }
+
         public AddWindow()
         {
 
@@ -316,14 +323,41 @@ namespace WpfApplication2
             AnswerBox.Width = 300;
             AnswerBox.FontSize = 100;
 
-           
+
+            Grid gridForEnterZeroAndBackspace = new Grid();
+            gridForEnterZeroAndBackspace.Height = 274;
+            gridForEnterZeroAndBackspace.Width = 310;
+            
+
             Enter.Content = "Enter";
             Enter.FontSize = 100;
-            Enter.Height = 120;
-            Enter.Width = 300;
+            Enter.Height = 150;
+            Enter.Width = 450;
             Enter.FontFamily = new FontFamily("Cooper Black");
-            Enter.Margin = new Thickness(475, 650, 75, 0);
+            //Enter.Margin = new Thickness(475, 650, 75, 0);
             Enter.Background = Brushes.LimeGreen;
+
+            zero.Content = "0";
+            zero.FontSize = 100;
+            zero.Height = 150;
+            zero.Width = 450;
+            zero.FontFamily = new FontFamily("Cooper Black");
+            zero.Background = Brushes.Black;
+            zero.Foreground = Brushes.White;
+            zero.Click += zero_Click;
+
+            backspace.Content = "\b";
+            backspace.FontSize = 100;
+            backspace.Height = 150;
+            backspace.Width = 450;
+            backspace.FontFamily = new FontFamily("Cooper Black");
+            backspace.Background = Brushes.Red;
+            //backspace.Foreground = Brushes.White;
+            backspace.Click += backspace_Click;
+
+            gridForEnterZeroAndBackspace.Children.Add(Enter);
+            gridForEnterZeroAndBackspace.Children.Add(zero);
+            gridForEnterZeroAndBackspace.Children.Add(backspace);
 
             Grid numberPad = numpad();
             numberPad.HorizontalAlignment = HorizontalAlignment.Left;
@@ -334,7 +368,7 @@ namespace WpfApplication2
             addWindowGrid.Children.Add(TopNum);
             addWindowGrid.Children.Add(Symbol);
             addWindowGrid.Children.Add(AnswerBox);
-            addWindowGrid.Children.Add(Enter);
+            //addWindowGrid.Children.Add(Enter);
             addition.Content = addWindowGrid;
             addition.Show();
 
