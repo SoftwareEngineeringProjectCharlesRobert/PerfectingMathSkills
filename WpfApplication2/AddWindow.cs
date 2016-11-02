@@ -20,6 +20,7 @@ namespace WpfApplication2
 
     public class AddWindow
     {
+        private int buttonCounter = 0;
         private int solution;
         private int userAnswer;
         private Window addition = new Window();
@@ -171,17 +172,17 @@ namespace WpfApplication2
             Button clear = new Button { };
             
             Button num;
-            int i = 0;
+            //int i = 0;
 
             for(int row = 0; row < numberPad.RowDefinitions.Count - 1; row++)
             {
                 for(int col = 0; col < numberPad.ColumnDefinitions.Count; col++)
                 {
-                    i++;
+                    buttonCounter++;
                     num = new Button();
                     num.Width = 150;
                     num.Height = 150;
-                    num.Content = i.ToString();
+                    num.Content = buttonCounter.ToString();
 
                     num.Background = Brushes.Black;
                     num.Foreground = Brushes.White;
@@ -189,7 +190,24 @@ namespace WpfApplication2
                     num.FontSize = 100;
                     num.HorizontalAlignment = HorizontalAlignment.Center;
                     num.VerticalAlignment = VerticalAlignment.Center;
-                    num.Click += Num_Click;
+                    if (buttonCounter == 1)
+                        num.Click += one_Click;
+                    else if (buttonCounter == 2)
+                        num.Click += two_Click;
+                    else if (buttonCounter == 3)
+                        num.Click += three_Click;
+                    else if (buttonCounter == 4)
+                        num.Click += four_Click;
+                    else if (buttonCounter == 5)
+                        num.Click += five_Click;
+                    else if (buttonCounter == 6)
+                        num.Click += six_Click;
+                    else if (buttonCounter == 7)
+                        num.Click += seven_Click;
+                    else if (buttonCounter == 8)
+                        num.Click += eight_Click;
+                    else
+                        num.Click += nine_Click;
 
                     num.SetValue(Grid.ColumnProperty, col);
                     num.SetValue(Grid.RowProperty, row);
@@ -200,9 +218,54 @@ namespace WpfApplication2
             return numberPad;
         }
 
-        private void Num_Click(object sender, RoutedEventArgs e)
+        private void one_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AnswerBox.Text += "1";
+        }
+
+        private void two_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "2";
+        }
+
+        private void three_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "3";
+        }
+
+        private void four_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "4";
+        }
+
+        private void five_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "5";
+        }
+
+        private void six_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "6";
+        }
+
+        private void seven_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "7";
+        }
+
+        private void eight_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "8";
+        }
+
+        private void nine_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "9";
+        }
+
+        private void zero_Click(object sender, RoutedEventArgs e)
+        {
+            AnswerBox.Text += "0";
         }
 
         public AddWindow()
@@ -263,6 +326,8 @@ namespace WpfApplication2
             Enter.Background = Brushes.LimeGreen;
 
             Grid numberPad = numpad();
+            numberPad.HorizontalAlignment = HorizontalAlignment.Left;
+            numberPad.VerticalAlignment = VerticalAlignment.Center;
 
             addWindowGrid.Children.Add(numberPad);
             addWindowGrid.Children.Add(BottomNum);
