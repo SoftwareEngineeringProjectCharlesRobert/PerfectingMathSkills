@@ -1,5 +1,5 @@
 ﻿//Authors: Charles Clayton and Robert Rayburn
-//Last date modified: October 27, 2016
+//Last date modified: november 4, 2016
 //File name: AddWindow.cs
 //Description:
 
@@ -75,6 +75,11 @@ namespace WpfApplication2
                 cGrid.Children.Add(right);
                 correct.Content = cGrid;
                 correct.Show();
+                //correct.Close();
+
+                //top = getTopNum(26);
+                //bot = getBotNum(26);
+                //update window method that calls get top and get bottom;
             }
 
             else
@@ -134,8 +139,7 @@ namespace WpfApplication2
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            //top = getTopNum(26);
-            //bot = getBotNum(26);
+            //SystemCommands.CloseWindow();
             //addWindowGrid.Items.refresh();
             //AddWindow nextProblem = new AddWindow { };
             
@@ -163,7 +167,7 @@ namespace WpfApplication2
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
-            numberPad.RowDefinitions.Add(new RowDefinition());
+            //numberPad.RowDefinitions.Add(new RowDefinition());
 
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
@@ -175,7 +179,7 @@ namespace WpfApplication2
             Button num;
             //int i = 0;
 
-            for(int row = 0; row < numberPad.RowDefinitions.Count - 1; row++)
+            for(int row = 0; row < numberPad.RowDefinitions.Count /*- 1*/; row++)
             {
                 for(int col = 0; col < numberPad.ColumnDefinitions.Count; col++)
                 {
@@ -316,13 +320,13 @@ namespace WpfApplication2
             Symbol.Text += "+";
 
 
-            
             AnswerBox.Margin = new Thickness(475, 400, 75, 0);
             AnswerBox.FontFamily = new FontFamily("Cooper Black");
             AnswerBox.TextAlignment = TextAlignment.Right;
             AnswerBox.Height = 120;
             AnswerBox.Width = 300;
             AnswerBox.FontSize = 100;
+            AnswerBox.MaxLength = 4;
 
 
             Grid gridForEnterZeroAndBackspace = new Grid();
@@ -331,8 +335,10 @@ namespace WpfApplication2
 
             gridForEnterZeroAndBackspace.ColumnDefinitions.Add(new ColumnDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
+            //gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
+
             gridForEnterZeroAndBackspace.HorizontalAlignment = HorizontalAlignment.Left;
             gridForEnterZeroAndBackspace.VerticalAlignment = VerticalAlignment.Bottom;
 
@@ -344,7 +350,7 @@ namespace WpfApplication2
             Enter.FontFamily = new FontFamily("Cooper Black");
             //Enter.Margin = new Thickness(475, 650, 75, 0);
             Enter.Background = Brushes.LimeGreen;
-            Enter.SetValue(Grid.ColumnProperty, 1);
+            Enter.SetValue(Grid.ColumnProperty, 0);
             Enter.SetValue(Grid.RowProperty, 1);
             Enter.HorizontalAlignment = HorizontalAlignment.Center;
             Enter.VerticalAlignment = VerticalAlignment.Center;
@@ -358,8 +364,8 @@ namespace WpfApplication2
             zero.Background = Brushes.Black;
             zero.Foreground = Brushes.White;
             zero.Click += zero_Click;
-            zero.SetValue(Grid.ColumnProperty, 1);
-            zero.SetValue(Grid.RowProperty, 2);
+            zero.SetValue(Grid.ColumnProperty, 0);
+            zero.SetValue(Grid.RowProperty, 0);
             zero.HorizontalAlignment = HorizontalAlignment.Center;
             zero.VerticalAlignment = VerticalAlignment.Center;
 
@@ -371,8 +377,8 @@ namespace WpfApplication2
             backspace.Background = Brushes.Red;
             //backspace.Foreground = Brushes.White;
             backspace.Click += backspace_Click;
-            backspace.SetValue(Grid.ColumnProperty, 1);
-            backspace.SetValue(Grid.RowProperty, 3);
+            backspace.SetValue(Grid.ColumnProperty, 0);
+            backspace.SetValue(Grid.RowProperty, 2);
             backspace.HorizontalAlignment = HorizontalAlignment.Center;
             backspace.VerticalAlignment = VerticalAlignment.Center;
 
@@ -383,7 +389,7 @@ namespace WpfApplication2
 
             Grid numberPad = numpad();
             numberPad.HorizontalAlignment = HorizontalAlignment.Left;
-            numberPad.VerticalAlignment = VerticalAlignment.Center;
+            numberPad.VerticalAlignment = VerticalAlignment.Top;
 
             addWindowGrid.Children.Add(gridForEnterZeroAndBackspace);
             addWindowGrid.Children.Add(numberPad);
