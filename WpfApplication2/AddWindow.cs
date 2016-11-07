@@ -35,16 +35,20 @@ namespace WpfApplication2
         private Button zero = new Button();
         private Button backspace = new Button();
 
+        Window correct = new Window { };
+        Window incorrect = new Window { };
+
         Random randomNum = new Random();
         int top;
         int bot;
+
 
         public void Check_Window()
         {
             userAnswer = Convert.ToInt32(AnswerBox.Text);
             if (userAnswer == solution)
             {
-                Window correct = new Window { };
+                correct = new Window { };
                 correct.Background = Brushes.LimeGreen;
                 correct.Height = 300;
                 correct.Width = 760;
@@ -75,16 +79,12 @@ namespace WpfApplication2
                 cGrid.Children.Add(right);
                 correct.Content = cGrid;
                 correct.Show();
-                //correct.Close();
-
-                //top = getTopNum(26);
-                //bot = getBotNum(26);
-                //update window method that calls get top and get bottom;
+                
             }
 
             else
             {
-                Window incorrect = new Window { };
+                incorrect = new Window { };
                 incorrect.Height = 300;
                 incorrect.Width = 760;
                 incorrect.Background = Brushes.Firebrick;
@@ -115,6 +115,7 @@ namespace WpfApplication2
                 cGrid.Children.Add(wrong);
                 incorrect.Content = cGrid;
                 incorrect.Show();
+                AnswerBox.Clear();
             }
         }
 
@@ -130,18 +131,25 @@ namespace WpfApplication2
         }
         public void Button_Click(object sender, RoutedEventArgs e)
         {
-            Check_Window();
+            if(AnswerBox.Text.Length > 0)
+                Check_Window();
+            return;
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            if(AnswerBox.Text.Length == 0)
+            {
+                return;
+            }
+            else 
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            //SystemCommands.CloseWindow();
-            //addWindowGrid.Items.refresh();
-            //AddWindow nextProblem = new AddWindow { };
+            update();
+            correct.Close();
+            AnswerBox.Clear();
             
         }
 
@@ -151,7 +159,7 @@ namespace WpfApplication2
             return number;
         }
 
-        public int getBotNum(int max)
+        public int getBotNum(int max)                                     
         {               //max will be one more than difficulty bounds
             int number = randomNum.Next(max);
             return number;
@@ -276,8 +284,21 @@ namespace WpfApplication2
 
         private void backspace_Click(object sender, RoutedEventArgs e)
         {
-            //if anserbox is empty do something.
-            AnswerBox.Text = AnswerBox.Text.Remove(AnswerBox.Text.Length - 1);
+            if (AnswerBox.Text.Length == 0)
+                return;
+            else
+                AnswerBox.Text = AnswerBox.Text.Remove(AnswerBox.Text.Length - 1);
+        }
+
+        public void update()
+        {
+            top = getBotNum(26);
+            bot = getBotNum(26);
+
+            solution = top + bot;
+
+            TopNum.Text = top.ToString();
+            BottomNum.Text = bot.ToString();
         }
 
         public AddWindow()
@@ -285,12 +306,9 @@ namespace WpfApplication2
 
             addition.ResizeMode = ResizeMode.NoResize;
             addition.WindowState = WindowState.Maximized;
-
-            //Grid addWindowGrid = new Grid { };
             addition.Background = Brushes.SteelBlue;
 
             TopNum.Margin = new Thickness(475, 0, 75, 400);
-            //TopNum.Background = Brushes.White;
             TopNum.FontSize = 100;
             TopNum.FontFamily = new FontFamily("Cooper Black");
             TopNum.TextAlignment = TextAlignment.Right;
@@ -300,7 +318,6 @@ namespace WpfApplication2
             TopNum.Width = 300;
 
             BottomNum.Margin = new Thickness(475, 0, 75, 50);
-            //BottomNum.Background = Brushes.White;
             BottomNum.FontSize = 100;
             BottomNum.FontFamily = new FontFamily("Cooper Black");
             BottomNum.TextAlignment = TextAlignment.Right;
@@ -335,7 +352,6 @@ namespace WpfApplication2
 
             gridForEnterZeroAndBackspace.ColumnDefinitions.Add(new ColumnDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
-            //gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
 
@@ -348,7 +364,6 @@ namespace WpfApplication2
             Enter.Height = 150;
             Enter.Width = 410;
             Enter.FontFamily = new FontFamily("Cooper Black");
-            //Enter.Margin = new Thickness(475, 650, 75, 0);
             Enter.Background = Brushes.LimeGreen;
             Enter.SetValue(Grid.ColumnProperty, 0);
             Enter.SetValue(Grid.RowProperty, 1);
@@ -375,7 +390,6 @@ namespace WpfApplication2
             backspace.Width = 410;
             backspace.FontFamily = new FontFamily("Cooper Black");
             backspace.Background = Brushes.Red;
-            //backspace.Foreground = Brushes.White;
             backspace.Click += backspace_Click;
             backspace.SetValue(Grid.ColumnProperty, 0);
             backspace.SetValue(Grid.RowProperty, 2);
@@ -397,12 +411,11 @@ namespace WpfApplication2
             addWindowGrid.Children.Add(TopNum);
             addWindowGrid.Children.Add(Symbol);
             addWindowGrid.Children.Add(AnswerBox);
-            //addWindowGrid.Children.Add(Enter);
             addition.Content = addWindowGrid;
             addition.Show();
 
             Enter.Click += Button_Click;
-            AnswerBox.KeyDown += Window_KeyDown;//new RoutedEventHandler(Button_Click);
+            AnswerBox.KeyDown += Window_KeyDown;
         }
     } 
 }
