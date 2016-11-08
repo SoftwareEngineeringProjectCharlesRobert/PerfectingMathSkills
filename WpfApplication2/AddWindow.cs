@@ -42,6 +42,121 @@ namespace WpfApplication2
         int top;
         int bot;
 
+        public AddWindow()
+        {
+
+            addition.ResizeMode = ResizeMode.NoResize;
+            addition.WindowState = WindowState.Maximized;
+            addition.Background = Brushes.SteelBlue;
+
+            TopNum.Margin = new Thickness(475, 0, 75, 400);
+            TopNum.FontSize = 100;
+            TopNum.FontFamily = new FontFamily("Cooper Black");
+            TopNum.TextAlignment = TextAlignment.Right;
+            TopNum.Text += top;
+            TopNum.Height = 120;
+            TopNum.Width = 300;
+
+            BottomNum.Margin = new Thickness(475, 0, 75, 50);
+            BottomNum.FontSize = 100;
+            BottomNum.FontFamily = new FontFamily("Cooper Black");
+            BottomNum.TextAlignment = TextAlignment.Right;
+            BottomNum.Text += bot;
+            BottomNum.Height = 120;
+            BottomNum.Width = 300;
+
+            update();
+
+
+            Symbol.Background = Brushes.SteelBlue;
+            Symbol.Height = 120;
+            Symbol.Width = 60;
+            Symbol.FontSize = 100;
+            Symbol.FontFamily = new FontFamily("Cooper Black");
+            Symbol.Margin = new Thickness(475, 0, 625, 50);
+            Symbol.Text += "+";
+
+
+            AnswerBox.Margin = new Thickness(475, 400, 75, 0);
+            AnswerBox.FontFamily = new FontFamily("Cooper Black");
+            AnswerBox.TextAlignment = TextAlignment.Right;
+            AnswerBox.Height = 120;
+            AnswerBox.Width = 300;
+            AnswerBox.FontSize = 100;
+            AnswerBox.MaxLength = 4;
+
+
+            Grid gridForEnterZeroAndBackspace = new Grid();
+            gridForEnterZeroAndBackspace.Height = 410;
+            gridForEnterZeroAndBackspace.Width = 310;
+
+            gridForEnterZeroAndBackspace.ColumnDefinitions.Add(new ColumnDefinition());
+            gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
+            gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
+            gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
+
+            gridForEnterZeroAndBackspace.HorizontalAlignment = HorizontalAlignment.Left;
+            gridForEnterZeroAndBackspace.VerticalAlignment = VerticalAlignment.Bottom;
+
+
+            Enter.Content = "Enter";
+            Enter.FontSize = 100;
+            Enter.Height = 150;
+            Enter.Width = 410;
+            Enter.FontFamily = new FontFamily("Cooper Black");
+            Enter.Background = Brushes.LimeGreen;
+            Enter.SetValue(Grid.ColumnProperty, 0);
+            Enter.SetValue(Grid.RowProperty, 1);
+            Enter.HorizontalAlignment = HorizontalAlignment.Center;
+            Enter.VerticalAlignment = VerticalAlignment.Center;
+
+
+            zero.Content = "0";
+            zero.FontSize = 100;
+            zero.Height = 150;
+            zero.Width = 410;
+            zero.FontFamily = new FontFamily("Cooper Black");
+            zero.Background = Brushes.Black;
+            zero.Foreground = Brushes.White;
+            zero.Click += zero_Click;
+            zero.SetValue(Grid.ColumnProperty, 0);
+            zero.SetValue(Grid.RowProperty, 0);
+            zero.HorizontalAlignment = HorizontalAlignment.Center;
+            zero.VerticalAlignment = VerticalAlignment.Center;
+
+            backspace.Content = "\u232B";
+            backspace.FontSize = 100;
+            backspace.Height = 150;
+            backspace.Width = 410;
+            backspace.FontFamily = new FontFamily("Cooper Black");
+            backspace.Background = Brushes.Red;
+            backspace.Click += backspace_Click;
+            backspace.SetValue(Grid.ColumnProperty, 0);
+            backspace.SetValue(Grid.RowProperty, 2);
+            backspace.HorizontalAlignment = HorizontalAlignment.Center;
+            backspace.VerticalAlignment = VerticalAlignment.Center;
+
+
+            gridForEnterZeroAndBackspace.Children.Add(Enter);
+            gridForEnterZeroAndBackspace.Children.Add(zero);
+            gridForEnterZeroAndBackspace.Children.Add(backspace);
+
+            Grid numberPad = numpad();
+            numberPad.HorizontalAlignment = HorizontalAlignment.Left;
+            numberPad.VerticalAlignment = VerticalAlignment.Top;
+
+            addWindowGrid.Children.Add(gridForEnterZeroAndBackspace);
+            addWindowGrid.Children.Add(numberPad);
+            addWindowGrid.Children.Add(BottomNum);
+            addWindowGrid.Children.Add(TopNum);
+            addWindowGrid.Children.Add(Symbol);
+            addWindowGrid.Children.Add(AnswerBox);
+            addition.Content = addWindowGrid;
+            addition.Show();
+
+            Enter.Click += Button_Click;
+            AnswerBox.KeyDown += Window_KeyDown;
+        }
 
         public void Check_Window()
         {
@@ -124,7 +239,6 @@ namespace WpfApplication2
             if (e.Key == Key.Enter)
             {
                 Button_Click(this, new RoutedEventArgs());
-                //e.Handled = true;
             }
 
 
@@ -175,7 +289,6 @@ namespace WpfApplication2
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
-            //numberPad.RowDefinitions.Add(new RowDefinition());
 
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
@@ -301,121 +414,6 @@ namespace WpfApplication2
             BottomNum.Text = bot.ToString();
         }
 
-        public AddWindow()
-        {
-
-            addition.ResizeMode = ResizeMode.NoResize;
-            addition.WindowState = WindowState.Maximized;
-            addition.Background = Brushes.SteelBlue;
-
-            TopNum.Margin = new Thickness(475, 0, 75, 400);
-            TopNum.FontSize = 100;
-            TopNum.FontFamily = new FontFamily("Cooper Black");
-            TopNum.TextAlignment = TextAlignment.Right;
-            top = getTopNum(26);
-            TopNum.Text += top;
-            TopNum.Height = 120;
-            TopNum.Width = 300;
-
-            BottomNum.Margin = new Thickness(475, 0, 75, 50);
-            BottomNum.FontSize = 100;
-            BottomNum.FontFamily = new FontFamily("Cooper Black");
-            BottomNum.TextAlignment = TextAlignment.Right;
-            bot = getBotNum(26);
-            BottomNum.Text += bot;
-            BottomNum.Height = 120;
-            BottomNum.Width = 300;
-
-            solution = top + bot;
-
-            Symbol.Background = Brushes.SteelBlue;
-            Symbol.Height = 120;
-            Symbol.Width = 60;
-            Symbol.FontSize = 100;
-            Symbol.FontFamily = new FontFamily("Cooper Black");
-            Symbol.Margin = new Thickness(475, 0, 625, 50);
-            Symbol.Text += "+";
-
-
-            AnswerBox.Margin = new Thickness(475, 400, 75, 0);
-            AnswerBox.FontFamily = new FontFamily("Cooper Black");
-            AnswerBox.TextAlignment = TextAlignment.Right;
-            AnswerBox.Height = 120;
-            AnswerBox.Width = 300;
-            AnswerBox.FontSize = 100;
-            AnswerBox.MaxLength = 4;
-
-
-            Grid gridForEnterZeroAndBackspace = new Grid();
-            gridForEnterZeroAndBackspace.Height = 410;
-            gridForEnterZeroAndBackspace.Width = 310;
-
-            gridForEnterZeroAndBackspace.ColumnDefinitions.Add(new ColumnDefinition());
-            gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
-            gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
-            gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
-
-            gridForEnterZeroAndBackspace.HorizontalAlignment = HorizontalAlignment.Left;
-            gridForEnterZeroAndBackspace.VerticalAlignment = VerticalAlignment.Bottom;
-
-
-            Enter.Content = "Enter";
-            Enter.FontSize = 100;
-            Enter.Height = 150;
-            Enter.Width = 410;
-            Enter.FontFamily = new FontFamily("Cooper Black");
-            Enter.Background = Brushes.LimeGreen;
-            Enter.SetValue(Grid.ColumnProperty, 0);
-            Enter.SetValue(Grid.RowProperty, 1);
-            Enter.HorizontalAlignment = HorizontalAlignment.Center;
-            Enter.VerticalAlignment = VerticalAlignment.Center;
-
-
-            zero.Content = "0";
-            zero.FontSize = 100;
-            zero.Height = 150;
-            zero.Width = 410;
-            zero.FontFamily = new FontFamily("Cooper Black");
-            zero.Background = Brushes.Black;
-            zero.Foreground = Brushes.White;
-            zero.Click += zero_Click;
-            zero.SetValue(Grid.ColumnProperty, 0);
-            zero.SetValue(Grid.RowProperty, 0);
-            zero.HorizontalAlignment = HorizontalAlignment.Center;
-            zero.VerticalAlignment = VerticalAlignment.Center;
-
-            backspace.Content = "\u232B";
-            backspace.FontSize = 100;
-            backspace.Height = 150;
-            backspace.Width = 410;
-            backspace.FontFamily = new FontFamily("Cooper Black");
-            backspace.Background = Brushes.Red;
-            backspace.Click += backspace_Click;
-            backspace.SetValue(Grid.ColumnProperty, 0);
-            backspace.SetValue(Grid.RowProperty, 2);
-            backspace.HorizontalAlignment = HorizontalAlignment.Center;
-            backspace.VerticalAlignment = VerticalAlignment.Center;
-
-
-            gridForEnterZeroAndBackspace.Children.Add(Enter);
-            gridForEnterZeroAndBackspace.Children.Add(zero);
-            gridForEnterZeroAndBackspace.Children.Add(backspace);
-
-            Grid numberPad = numpad();
-            numberPad.HorizontalAlignment = HorizontalAlignment.Left;
-            numberPad.VerticalAlignment = VerticalAlignment.Top;
-
-            addWindowGrid.Children.Add(gridForEnterZeroAndBackspace);
-            addWindowGrid.Children.Add(numberPad);
-            addWindowGrid.Children.Add(BottomNum);
-            addWindowGrid.Children.Add(TopNum);
-            addWindowGrid.Children.Add(Symbol);
-            addWindowGrid.Children.Add(AnswerBox);
-            addition.Content = addWindowGrid;
-            addition.Show();
-
-            Enter.Click += Button_Click;
-            AnswerBox.KeyDown += Window_KeyDown;
-        }
+        
     } 
 }
