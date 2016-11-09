@@ -20,23 +20,26 @@ namespace WpfApplication2
 
     public class AddWindow
     {
-        private int buttonCounter = 0;
-        private int solution;
-        private int userAnswer;
-        private Window addition = new Window();
+        public ButtonClicks buttons = new ButtonClicks { };
+       
 
-        private Grid addWindowGrid = new Grid { };
-        private TextBlock TopNum = new TextBlock { };
-        private TextBlock BottomNum = new TextBlock { };
-        private TextBlock Symbol = new TextBlock();
-        private TextBox AnswerBox = new TextBox();
+        public int buttonCounter = 0;
+        public int solution;
+        public int userAnswer;
+        public Window addition = new Window();
 
-        private Button Enter = new Button { };
-        private Button zero = new Button();
-        private Button backspace = new Button();
+        public Grid addWindowGrid = new Grid { };
+        public TextBlock TopNum = new TextBlock { };
+        public TextBlock BottomNum = new TextBlock { };
+        public TextBlock Symbol = new TextBlock();
+        public TextBox AnswerBox = new TextBox();
 
-        Window correct = new Window { };
-        Window incorrect = new Window { };
+        public Button Enter = new Button { };
+        public Button zero = new Button();
+        public Button backspace = new Button();
+
+        public Window correct = new Window { };
+        public Window incorrect = new Window { };
 
         Random randomNum = new Random();
         int top;
@@ -118,7 +121,7 @@ namespace WpfApplication2
             zero.FontFamily = new FontFamily("Cooper Black");
             zero.Background = Brushes.Black;
             zero.Foreground = Brushes.White;
-            zero.Click += zero_Click;
+            zero.Click += buttons.zero_Click;
             zero.SetValue(Grid.ColumnProperty, 0);
             zero.SetValue(Grid.RowProperty, 0);
             zero.HorizontalAlignment = HorizontalAlignment.Center;
@@ -130,7 +133,7 @@ namespace WpfApplication2
             backspace.Width = 410;
             backspace.FontFamily = new FontFamily("Cooper Black");
             backspace.Background = Brushes.Red;
-            backspace.Click += backspace_Click;
+            backspace.Click += buttons.backspace_Click;
             backspace.SetValue(Grid.ColumnProperty, 0);
             backspace.SetValue(Grid.RowProperty, 2);
             backspace.HorizontalAlignment = HorizontalAlignment.Center;
@@ -154,8 +157,8 @@ namespace WpfApplication2
             addition.Content = addWindowGrid;
             addition.Show();
 
-            Enter.Click += Button_Click;
-            AnswerBox.KeyDown += Window_KeyDown;
+            Enter.Click += buttons.Button_Click;
+            AnswerBox.KeyDown += buttons.Window_KeyDown;
         }
 
         public void Check_Window()
@@ -188,13 +191,13 @@ namespace WpfApplication2
                 next.Height = 120;
                 next.Width = 380;
                 next.Margin = new Thickness(100, 100, 100, 0);
-                next.Click += Next_Click;
+                next.Click += buttons.Next_Click;
 
                 cGrid.Children.Add(next);
                 cGrid.Children.Add(right);
                 correct.Content = cGrid;
                 correct.Show();
-                correct.KeyDown += Next_EnterKeyDown;
+                correct.KeyDown += buttons.Next_EnterKeyDown;
                 
             }
 
@@ -225,7 +228,7 @@ namespace WpfApplication2
                 back.Height = 120;
                 back.Width = 380;
                 back.Margin = new Thickness(100, 100, 100, 0);
-                back.Click += Back_Click;
+                back.Click += buttons.Back_Click;
 
                 cGrid.Children.Add(back);
                 cGrid.Children.Add(wrong);
@@ -235,42 +238,42 @@ namespace WpfApplication2
             }
         }
         
-        void Next_EnterKeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.Key == Key.Enter)
-            {
-                Next_Click(this, new RoutedEventArgs());
-            }
-        }
+        //void Next_EnterKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if(e.Key == Key.Enter)
+        //    {
+        //        Next_Click(this, new RoutedEventArgs());
+        //    }
+        //}
 
-        void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                Button_Click(this, new RoutedEventArgs());
-            }
+        //void Window_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        Button_Click(this, new RoutedEventArgs());
+        //    }
 
 
-        }
-        public void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if(AnswerBox.Text.Length > 0)
-                Check_Window();
-            return;
-        }
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+        //}
+        //public void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if(AnswerBox.Text.Length > 0)
+        //        Check_Window();
+        //    return;
+        //}
+        //public void Back_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
             
-        }
+        //}
 
-        public void Next_Click(object sender, RoutedEventArgs e)
-        {
-            update();
-            correct.Close();
-            AnswerBox.Clear();
+        //public void Next_Click(object sender, RoutedEventArgs e)
+        //{
+        //    update();
+        //    correct.Close();
+        //    AnswerBox.Clear();
             
-        }
+        //}
 
         public int getTopNum(int max)
         {               //max will be one more than difficulty bounds
@@ -323,23 +326,23 @@ namespace WpfApplication2
                     num.VerticalAlignment = VerticalAlignment.Center;
 
                     if (buttonCounter == 1)
-                        num.Click += one_Click;
+                        num.Click += buttons.one_Click;
                     else if (buttonCounter == 2)
-                        num.Click += two_Click;
+                        num.Click += buttons.two_Click;
                     else if (buttonCounter == 3)
-                        num.Click += three_Click;
+                        num.Click += buttons.three_Click;
                     else if (buttonCounter == 4)
-                        num.Click += four_Click;
+                        num.Click += buttons.four_Click;
                     else if (buttonCounter == 5)
-                        num.Click += five_Click;
+                        num.Click += buttons.five_Click;
                     else if (buttonCounter == 6)
-                        num.Click += six_Click;
+                        num.Click += buttons.six_Click;
                     else if (buttonCounter == 7)
-                        num.Click += seven_Click;
+                        num.Click += buttons.seven_Click;
                     else if (buttonCounter == 8)
-                        num.Click += eight_Click;
+                        num.Click += buttons.eight_Click;
                     else
-                        num.Click += nine_Click;
+                        num.Click += buttons.nine_Click;
 
                     num.SetValue(Grid.ColumnProperty, col);
                     num.SetValue(Grid.RowProperty, row);
@@ -350,63 +353,63 @@ namespace WpfApplication2
             return numberPad;
         }
 
-        private void one_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "1";
-        }
+        //public void one_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "1";
+        //}
 
-        private void two_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "2";
-        }
+        //public void two_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "2";
+        //}
 
-        private void three_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "3";
-        }
+        //public void three_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "3";
+        //}
 
-        private void four_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "4";
-        }
+        //public void four_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "4";
+        //}
 
-        private void five_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "5";
-        }
+        //public void five_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "5";
+        //}
 
-        private void six_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "6";
-        }
+        //public void six_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "6";
+        //}
 
-        private void seven_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "7";
-        }
+        //public void seven_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "7";
+        //}
 
-        private void eight_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "8";
-        }
+        //public void eight_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "8";
+        //}
 
-        private void nine_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "9";
-        }
+        //public void nine_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "9";
+        //}
 
-        private void zero_Click(object sender, RoutedEventArgs e)
-        {
-            AnswerBox.Text += "0";
-        }
+        //public void zero_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AnswerBox.Text += "0";
+        //}
 
-        private void backspace_Click(object sender, RoutedEventArgs e)
-        {
-            if (AnswerBox.Text.Length == 0)
-                return;
-            else
-                AnswerBox.Text = AnswerBox.Text.Remove(AnswerBox.Text.Length - 1);
-        }
+        //public void backspace_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (AnswerBox.Text.Length == 0)
+        //        return;
+        //    else
+        //        AnswerBox.Text = AnswerBox.Text.Remove(AnswerBox.Text.Length - 1);
+        //}
 
         public void update()
         {
