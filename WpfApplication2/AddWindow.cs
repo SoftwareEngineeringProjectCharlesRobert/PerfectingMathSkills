@@ -194,6 +194,7 @@ namespace WpfApplication2
                 cGrid.Children.Add(right);
                 correct.Content = cGrid;
                 correct.Show();
+                correct.KeyDown += Next_EnterKeyDown;
                 
             }
 
@@ -233,6 +234,14 @@ namespace WpfApplication2
                 AnswerBox.Clear();
             }
         }
+        
+        void Next_EnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Next_Click(this, new RoutedEventArgs());
+            }
+        }
 
         void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -251,15 +260,11 @@ namespace WpfApplication2
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            if(AnswerBox.Text.Length == 0)
-            {
-                return;
-            }
-            else 
-                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
+        public void Next_Click(object sender, RoutedEventArgs e)
         {
             update();
             correct.Close();
