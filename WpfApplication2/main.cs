@@ -21,23 +21,33 @@ namespace WpfApplication2
         {
             first.ResizeMode = ResizeMode.NoResize;
             first.WindowState = WindowState.Maximized;
-            first.Background = Brushes.DarkGoldenrod;
+            first.Background = Brushes.Yellow;
 
             add.Background = Brushes.Red;
-            add.Height = 100;
-            add.Width = 200;
+            add.Height = 300;
+            add.Width = 500;
+            add.Content = "Add";
+            add.FontFamily = new FontFamily("Cooper Black");
+            add.FontSize = 80;
             add.VerticalAlignment = VerticalAlignment.Bottom;
             add.HorizontalAlignment = HorizontalAlignment.Left;
+            add.Click += add_Click;
 
             subtract.Background = Brushes.Blue;
-            subtract.Height = 100;
-            subtract.Width = 200;
+            subtract.Height = 300;
+            subtract.Width = 500;
+            subtract.Content = "Subtract";
+            subtract.FontFamily = new FontFamily("Cooper Black");
+            subtract.FontSize = 80;
             subtract.VerticalAlignment = VerticalAlignment.Bottom;
             subtract.HorizontalAlignment = HorizontalAlignment.Center;
 
             multiply.Background = Brushes.Green;
-            multiply.Height = 100;
-            multiply.Width = 200;
+            multiply.Height = 300;
+            multiply.Width = 500;
+            multiply.Content = "Multiply";
+            multiply.FontFamily = new FontFamily("Cooper Black");
+            multiply.FontSize = 80;
             multiply.VerticalAlignment = VerticalAlignment.Bottom;
             multiply.HorizontalAlignment = HorizontalAlignment.Right;
 
@@ -48,6 +58,11 @@ namespace WpfApplication2
             first.Content = grid;
             first.Show();
 
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            AddWindow THIS = new AddWindow();
         }
     }
 }
