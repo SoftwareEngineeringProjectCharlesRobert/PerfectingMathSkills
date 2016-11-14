@@ -16,7 +16,6 @@ namespace WpfApplication2
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AddWindow add = new AddWindow { };
-          
         }
     }
 }
