@@ -124,7 +124,7 @@ namespace WpfApplication2
             if (e.Key == Key.Enter)
             {
                 Button_Click(this, new RoutedEventArgs());
-                //e.Handled = true;
+                
             }
 
 
@@ -153,13 +153,8 @@ namespace WpfApplication2
             
         }
 
-        public int getTopNum(int max)
-        {               //max will be one more than difficulty bounds
-            int number = randomNum.Next(max);
-            return number;
-        }
 
-        public int getBotNum(int max)                                     
+        public int getNum(int max)                                     
         {               //max will be one more than difficulty bounds
             int number = randomNum.Next(max);
             return number;
@@ -175,7 +170,7 @@ namespace WpfApplication2
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
-            //numberPad.RowDefinitions.Add(new RowDefinition());
+            
 
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
@@ -292,8 +287,8 @@ namespace WpfApplication2
 
         public void update()
         {
-            top = getBotNum(26);
-            bot = getBotNum(26);
+            top = getNum(26);
+            bot = getNum(26);
 
             solution = top + bot;
 
@@ -312,7 +307,7 @@ namespace WpfApplication2
             TopNum.FontSize = 100;
             TopNum.FontFamily = new FontFamily("Cooper Black");
             TopNum.TextAlignment = TextAlignment.Right;
-            top = getTopNum(26);
+            top = getNum(26);
             TopNum.Text += top;
             TopNum.Height = 120;
             TopNum.Width = 300;
@@ -321,7 +316,7 @@ namespace WpfApplication2
             BottomNum.FontSize = 100;
             BottomNum.FontFamily = new FontFamily("Cooper Black");
             BottomNum.TextAlignment = TextAlignment.Right;
-            bot = getBotNum(26);
+            bot = getNum(26);
             BottomNum.Text += bot;
             BottomNum.Height = 120;
             BottomNum.Width = 300;
