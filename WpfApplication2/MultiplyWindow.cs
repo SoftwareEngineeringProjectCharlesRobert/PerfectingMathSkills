@@ -337,6 +337,7 @@ namespace WpfApplication2
             AnswerBox.Width = 300;
             AnswerBox.FontSize = 100;
             AnswerBox.MaxLength = 4;
+            //MaxLength doesn't work with buttons.
 
 
             Grid gridForEnterZeroAndBackspace = new Grid();
