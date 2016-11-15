@@ -1,4 +1,9 @@
-﻿using System;
+﻿//Authors: Charles Clayton and Robert Rayburn
+//Last date modified: november 15, 2016
+//File name: main.cs
+//Description:
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +46,7 @@ namespace WpfApplication2
             subtract.FontSize = 80;
             subtract.VerticalAlignment = VerticalAlignment.Bottom;
             subtract.HorizontalAlignment = HorizontalAlignment.Center;
+            subtract.Click += subtract_Click;
 
             multiply.Background = Brushes.Green;
             multiply.Height = 300;
@@ -50,6 +56,7 @@ namespace WpfApplication2
             multiply.FontSize = 80;
             multiply.VerticalAlignment = VerticalAlignment.Bottom;
             multiply.HorizontalAlignment = HorizontalAlignment.Right;
+            multiply.Click += multiply_Click;
 
             grid.Children.Add(add);
             grid.Children.Add(subtract);
@@ -63,6 +70,16 @@ namespace WpfApplication2
         private void add_Click(object sender, RoutedEventArgs e)
         {
             AddWindow THIS = new AddWindow();
+        }
+
+        private void subtract_Click(object sender, RoutedEventArgs e)
+        {
+            SubtractWindow THIS = new SubtractWindow();
+        }
+
+        private void multiply_Click(object sender, RoutedEventArgs e)
+        {
+            MultiplyWindow THIS = new MultiplyWindow();
         }
     }
 }

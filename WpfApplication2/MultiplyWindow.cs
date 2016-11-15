@@ -1,6 +1,6 @@
 ﻿//Authors: Charles Clayton and Robert Rayburn
 //Last date modified: november 15, 2016
-//File name: AddWindow.cs
+//File name: MultiplyWindow.cs
 //Description:
 
 using System;
@@ -11,14 +11,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Controls.Primitives;
 
 namespace WpfApplication2
 {
-
-    public class AddWindow
+    class MultiplyWindow
     {
         private int buttonCounter = 0;
         private int solution;
@@ -79,7 +76,7 @@ namespace WpfApplication2
                 cGrid.Children.Add(right);
                 correct.Content = cGrid;
                 correct.Show();
-                
+
             }
 
             else
@@ -115,7 +112,7 @@ namespace WpfApplication2
                 cGrid.Children.Add(wrong);
                 incorrect.Content = cGrid;
                 incorrect.Show();
-                
+              
             }
         }
 
@@ -124,20 +121,20 @@ namespace WpfApplication2
             if (e.Key == Key.Enter)
             {
                 Button_Click(this, new RoutedEventArgs());
-                
+
             }
 
 
         }
         public void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(AnswerBox.Text.Length > 0)
+            if (AnswerBox.Text.Length > 0)
                 Check_Window();
             return;
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            if(AnswerBox.Text.Length == 0)
+            if (AnswerBox.Text.Length == 0)
             {
                 return;
             }
@@ -151,11 +148,11 @@ namespace WpfApplication2
             update();
             correct.Close();
             AnswerBox.Clear();
-            
+
         }
 
 
-        public int getNum(int max)                                     
+        public int getNum(int max)
         {               //max will be one more than difficulty bounds
             int number = randomNum.Next(max);
             return number;
@@ -171,7 +168,7 @@ namespace WpfApplication2
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
             numberPad.RowDefinitions.Add(new RowDefinition());
-            
+
 
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
             numberPad.ColumnDefinitions.Add(new ColumnDefinition());
@@ -179,13 +176,13 @@ namespace WpfApplication2
 
             Button backspace = new Button { };
             Button clear = new Button { };
-            
+
             Button num;
             //int i = 0;
 
-            for(int row = 0; row < numberPad.RowDefinitions.Count /*- 1*/; row++)
+            for (int row = 0; row < numberPad.RowDefinitions.Count /*- 1*/; row++)
             {
-                for(int col = 0; col < numberPad.ColumnDefinitions.Count; col++)
+                for (int col = 0; col < numberPad.ColumnDefinitions.Count; col++)
                 {
                     buttonCounter++;
                     num = new Button();
@@ -288,16 +285,16 @@ namespace WpfApplication2
 
         public void update()
         {
-            top = getNum(26);
-            bot = getNum(26);
+            top = getNum(13);
+            bot = getNum(13);
 
-            solution = top + bot;
+            solution = top * bot;
 
             TopNum.Text = top.ToString();
             BottomNum.Text = bot.ToString();
         }
 
-        public AddWindow()
+        public MultiplyWindow()
         {
 
             addition.ResizeMode = ResizeMode.NoResize;
@@ -308,7 +305,7 @@ namespace WpfApplication2
             TopNum.FontSize = 100;
             TopNum.FontFamily = new FontFamily("Cooper Black");
             TopNum.TextAlignment = TextAlignment.Right;
-            top = getNum(26);
+            top = getNum(13);
             TopNum.Text += top;
             TopNum.Height = 120;
             TopNum.Width = 300;
@@ -317,12 +314,12 @@ namespace WpfApplication2
             BottomNum.FontSize = 100;
             BottomNum.FontFamily = new FontFamily("Cooper Black");
             BottomNum.TextAlignment = TextAlignment.Right;
-            bot = getNum(26);
+            bot = getNum(13);
             BottomNum.Text += bot;
             BottomNum.Height = 120;
             BottomNum.Width = 300;
 
-            solution = top + bot;
+            solution = top * bot;
 
             Symbol.Background = Brushes.SteelBlue;
             Symbol.Height = 120;
@@ -330,7 +327,7 @@ namespace WpfApplication2
             Symbol.FontSize = 100;
             Symbol.FontFamily = new FontFamily("Cooper Black");
             Symbol.Margin = new Thickness(475, 0, 625, 50);
-            Symbol.Text += "+";
+            Symbol.Text += "x";
 
 
             AnswerBox.Margin = new Thickness(475, 400, 75, 0);
@@ -413,5 +410,5 @@ namespace WpfApplication2
             Enter.Click += Button_Click;
             AnswerBox.KeyDown += Window_KeyDown;
         }
-    } 
+    }
 }
