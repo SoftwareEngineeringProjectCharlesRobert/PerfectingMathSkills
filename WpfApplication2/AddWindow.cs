@@ -4,20 +4,13 @@
 //Description:
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Controls.Primitives;
 
 namespace WpfApplication2
 {
-
     public class AddWindow
     {
         private int buttonCounter = 0;
@@ -119,8 +112,7 @@ namespace WpfApplication2
                 cGrid.Children.Add(back);
                 cGrid.Children.Add(wrong);
                 incorrect.Content = cGrid;
-                incorrect.Show();
-                
+                incorrect.Show();    
             }
         }
 

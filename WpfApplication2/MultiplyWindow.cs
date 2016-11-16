@@ -4,10 +4,6 @@
 //Description:
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -39,12 +35,16 @@ namespace WpfApplication2
         int top;
         int bot;
 
-
+        Counter count = new Counter();
+        TextBlock rightCounter = new TextBlock();
+        TextBlock attemptsCounter = new TextBlock();
+        
         public void Check_Window()
         {
             userAnswer = Convert.ToInt32(AnswerBox.Text);
             if (userAnswer == solution)
             {
+                count.updateBoth();
                 correct = new Window { };
                 correct.Background = Brushes.LimeGreen;
                 correct.Height = 300;
@@ -81,6 +81,7 @@ namespace WpfApplication2
 
             else
             {
+                count.updateAttempt();
                 incorrect = new Window { };
                 incorrect.Height = 300;
                 incorrect.Width = 760;
@@ -138,7 +139,10 @@ namespace WpfApplication2
             {
                 return;
             }
-            
+
+            attemptsCounter.Text = "";
+            attemptsCounter.Text = "Attempted\n" + count.attempts;
+
             incorrect.Close();
             AnswerBox.Clear();
         }
@@ -290,6 +294,12 @@ namespace WpfApplication2
 
             solution = top * bot;
 
+            rightCounter.Text = "";
+            rightCounter.Text = "Correct\n" + count.right;
+
+            attemptsCounter.Text = "";
+            attemptsCounter.Text = "Attempted\n" + count.attempts;
+
             TopNum.Text = top.ToString();
             BottomNum.Text = bot.ToString();
         }
@@ -300,6 +310,26 @@ namespace WpfApplication2
             addition.ResizeMode = ResizeMode.NoResize;
             addition.WindowState = WindowState.Maximized;
             addition.Background = Brushes.SteelBlue;
+
+            rightCounter.Background = Brushes.SteelBlue;
+            rightCounter.FontFamily = new FontFamily("Cooper Black");
+            rightCounter.FontSize = 50;
+            rightCounter.Width = 310;
+            rightCounter.Height = 210;
+            rightCounter.Text += "Correct\n" + count.right;
+            rightCounter.VerticalAlignment = VerticalAlignment.Top;
+            rightCounter.HorizontalAlignment = HorizontalAlignment.Right;
+            rightCounter.TextAlignment = TextAlignment.Right;
+
+            attemptsCounter.Background = Brushes.SteelBlue;
+            attemptsCounter.FontFamily = new FontFamily("Cooper Black");
+            attemptsCounter.FontSize = 50;
+            attemptsCounter.Width = 310;
+            attemptsCounter.Height = 210;
+            attemptsCounter.Text += "Attempted\n" + count.attempts;
+            attemptsCounter.VerticalAlignment = VerticalAlignment.Center;
+            attemptsCounter.HorizontalAlignment = HorizontalAlignment.Right;
+            attemptsCounter.TextAlignment = TextAlignment.Right;
 
             TopNum.Margin = new Thickness(475, 0, 75, 400);
             TopNum.FontSize = 100;
@@ -405,6 +435,8 @@ namespace WpfApplication2
             addWindowGrid.Children.Add(TopNum);
             addWindowGrid.Children.Add(Symbol);
             addWindowGrid.Children.Add(AnswerBox);
+            addWindowGrid.Children.Add(attemptsCounter);
+            addWindowGrid.Children.Add(rightCounter);
             addition.Content = addWindowGrid;
             addition.Show();
 
