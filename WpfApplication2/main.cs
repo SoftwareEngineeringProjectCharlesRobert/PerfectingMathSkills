@@ -22,6 +22,8 @@ namespace WpfApplication2
         Button subtract = new Button();
         Button multiply = new Button();
         Grid grid = new Grid();
+        TextBlock title = new TextBlock();
+
         public main()
         {
             first.ResizeMode = ResizeMode.NoResize;
@@ -58,9 +60,21 @@ namespace WpfApplication2
             multiply.HorizontalAlignment = HorizontalAlignment.Right;
             multiply.Click += multiply_Click;
 
+            title.Text = "Perfecting Math Skills!";
+            title.Background = Brushes.Yellow;
+            title.Foreground = Brushes.Purple;
+            title.FontFamily = new FontFamily("Cooper Black");
+            title.FontSize = 100;
+            title.Width = 1200;
+            title.Height = 110;
+            title.VerticalAlignment = VerticalAlignment.Top;
+            title.HorizontalAlignment = HorizontalAlignment.Center;
+            title.TextAlignment = TextAlignment.Center;
+
             grid.Children.Add(add);
             grid.Children.Add(subtract);
             grid.Children.Add(multiply);
+            grid.Children.Add(title);
 
             first.Content = grid;
             first.Show();
