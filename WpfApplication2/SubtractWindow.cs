@@ -372,7 +372,7 @@ namespace WpfApplication2
             Symbol.Width = 60;
             Symbol.FontSize = 100;
             Symbol.FontFamily = new FontFamily("Cooper Black");
-            Symbol.Margin = new Thickness(475, 0, 625, 50);
+            Symbol.Margin = new Thickness(485, 0, 625, 50);
             Symbol.Text += "-";
 
 
@@ -394,7 +394,7 @@ namespace WpfApplication2
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
             gridForEnterZeroAndBackspace.RowDefinitions.Add(new RowDefinition());
 
-            gridForEnterZeroAndBackspace.HorizontalAlignment = HorizontalAlignment.Left;
+            gridForEnterZeroAndBackspace.Margin = new Thickness(0, 0, 510, 0);
             gridForEnterZeroAndBackspace.VerticalAlignment = VerticalAlignment.Bottom;
 
 
@@ -442,7 +442,7 @@ namespace WpfApplication2
 
             Grid numberPad = numpad();
             numberPad.HorizontalAlignment = HorizontalAlignment.Left;
-            numberPad.VerticalAlignment = VerticalAlignment.Top;
+            numberPad.VerticalAlignment = VerticalAlignment.Bottom;
 
             addWindowGrid.Children.Add(gridForEnterZeroAndBackspace);
             addWindowGrid.Children.Add(numberPad);
