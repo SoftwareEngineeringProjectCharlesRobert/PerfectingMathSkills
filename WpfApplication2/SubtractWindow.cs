@@ -39,6 +39,8 @@ namespace WpfApplication2
         TextBlock rightCounter = new TextBlock();
         TextBlock attemptsCounter = new TextBlock();
 
+        Button mainmenu = new Button();
+
         public void Check_Window()
         {
             userAnswer = Convert.ToInt32(AnswerBox.Text);
@@ -444,19 +446,38 @@ namespace WpfApplication2
             numberPad.HorizontalAlignment = HorizontalAlignment.Left;
             numberPad.VerticalAlignment = VerticalAlignment.Top;
 
+            mainmenu.Content = "Main Menu";
+            mainmenu.FontFamily = new FontFamily("Cooper Black");
+            mainmenu.FontSize = 100;
+            mainmenu.Height = 110;
+            mainmenu.Width = 500;
+            mainmenu.Click += Mainmenu_Click;
+            mainmenu.VerticalAlignment = VerticalAlignment.Center;
+            mainmenu.HorizontalAlignment = HorizontalAlignment.Center;
+
+
             addWindowGrid.Children.Add(gridForEnterZeroAndBackspace);
             addWindowGrid.Children.Add(numberPad);
             addWindowGrid.Children.Add(BottomNum);
             addWindowGrid.Children.Add(TopNum);
             addWindowGrid.Children.Add(Symbol);
             addWindowGrid.Children.Add(AnswerBox);
+            addWindowGrid.Children.Add(attemptsCounter);
+            addWindowGrid.Children.Add(rightCounter);
+            addWindowGrid.Children.Add(mainmenu);
 
             addition.Content = addWindowGrid;
             addition.Show();
-            addWindowGrid.Children.Add(attemptsCounter);
-            addWindowGrid.Children.Add(rightCounter);
+
             Enter.Click += Button_Click;
             AnswerBox.KeyDown += Window_KeyDown;
+
+        }
+
+        private void Mainmenu_Click(object sender, RoutedEventArgs e)
+        {
+            ExitWindow ex = new ExitWindow(count.right, count.attempts);
+            addition.Close();
         }
     }
 }

@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Counter.cs" />
+    <Compile Include="ExitWindow.cs" />
     <Compile Include="MultiplyWindow.cs" />
     <Compile Include="SubtractWindow.cs" />
     <Page Include="MainWindow.xaml">
