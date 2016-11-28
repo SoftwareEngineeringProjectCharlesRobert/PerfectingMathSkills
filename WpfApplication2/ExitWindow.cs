@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,7 +9,7 @@ namespace WpfApplication2
     {
         Grid grid2 = new Grid();
         Window exit = new Window();
-        TextBox goodjob = new TextBox();
+        TextBlock goodjob = new TextBlock();
         TextBlock right = new TextBlock();
         TextBlock attempted = new TextBlock();
 

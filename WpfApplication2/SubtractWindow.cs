@@ -447,13 +447,14 @@ namespace WpfApplication2
             numberPad.VerticalAlignment = VerticalAlignment.Bottom;
 
             mainmenu.Content = "Main Menu";
+            mainmenu.Background = Brushes.Yellow;
             mainmenu.FontFamily = new FontFamily("Cooper Black");
             mainmenu.FontSize = 100;
             mainmenu.Height = 110;
-            mainmenu.Width = 500;
+            mainmenu.Width = 550;
             mainmenu.Click += Mainmenu_Click;
-            mainmenu.VerticalAlignment = VerticalAlignment.Center;
-            mainmenu.HorizontalAlignment = HorizontalAlignment.Center;
+            mainmenu.VerticalAlignment = VerticalAlignment.Bottom;
+            mainmenu.HorizontalAlignment = HorizontalAlignment.Right;
 
 
             addWindowGrid.Children.Add(gridForEnterZeroAndBackspace);

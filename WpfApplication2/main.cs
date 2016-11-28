@@ -83,17 +83,20 @@ namespace WpfApplication2
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            AddWindow THIS = new AddWindow();
+            AddWindow add = new AddWindow();
+            //first.Hide();
         }
 
         private void subtract_Click(object sender, RoutedEventArgs e)
         {
-            SubtractWindow THIS = new SubtractWindow();
+            SubtractWindow subtract = new SubtractWindow();
+            //first.Hide();
         }
 
         private void multiply_Click(object sender, RoutedEventArgs e)
         {
-            MultiplyWindow THIS = new MultiplyWindow();
+            MultiplyWindow multiply = new MultiplyWindow();
+            //first.Hide();
         }
     }
 }
