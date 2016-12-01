@@ -1,4 +1,10 @@
-﻿using System;
+﻿//Authors: Charles Clayton and Robert Rayburn
+//Last date modified: December 1, 2016
+//File name: ExitWindow.cs
+//Description: Contains the class that creates an exit window.
+//Note: All documentation is in readme.
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

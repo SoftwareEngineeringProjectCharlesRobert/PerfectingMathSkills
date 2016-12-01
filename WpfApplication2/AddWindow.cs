@@ -1,7 +1,8 @@
 ﻿//Authors: Charles Clayton and Robert Rayburn
-//Last date modified: november 15, 2016
+//Last date modified: December 1, 2016
 //File name: AddWindow.cs
-//Description:
+//Description: Contains the class that creates the addition mode window.
+//Note: All documentation is in readme.
 
 using System;
 using System.Windows;
@@ -158,7 +159,7 @@ namespace WpfApplication2
 
 
         public int getNum(int max)                                     
-        {               //max will be one more than difficulty bounds
+        {
             int number = randomNum.Next(max);
             return number;
         }
@@ -183,7 +184,7 @@ namespace WpfApplication2
             Button clear = new Button { };
             
             Button num;
-            //int i = 0;
+            
 
             for(int row = 0; row < numberPad.RowDefinitions.Count; row++)
             {

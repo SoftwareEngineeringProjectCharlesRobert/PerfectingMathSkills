@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//Authors: Charles Clayton and Robert Rayburn
+//Last date modified: December 1, 2016
+//File name: Counter.cs
+//Description: Contains the class that has the variables for the number of attempted
+//             and number of correct answers.
+//Note: All documentation is in readme.
 
 namespace WpfApplication2
 {

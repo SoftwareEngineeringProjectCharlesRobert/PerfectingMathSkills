@@ -1,13 +1,9 @@
 ﻿//Authors: Charles Clayton and Robert Rayburn
-//Last date modified: november 15, 2016
+//Last date modified: December 1, 2016
 //File name: main.cs
-//Description:
+//Description: Contains the class for the main startup window.
+//Note: All documentation is in readme.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -84,19 +80,19 @@ namespace WpfApplication2
         private void add_Click(object sender, RoutedEventArgs e)
         {
             AddWindow add = new AddWindow();
-            //first.Hide();
+            
         }
 
         private void subtract_Click(object sender, RoutedEventArgs e)
         {
             SubtractWindow subtract = new SubtractWindow();
-            //first.Hide();
+            
         }
 
         private void multiply_Click(object sender, RoutedEventArgs e)
         {
             MultiplyWindow multiply = new MultiplyWindow();
-            //first.Hide();
+            
         }
     }
 }
