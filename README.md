@@ -1,9 +1,9 @@
 # PerfectingMathSkills
-# 352 Project
-# Authors: Charles Clayton and Robert Rayburn
-# Last date modified: December 1, 2016
-# File: README.md
-# Description: Contains documentation for the program.
+352 Project
+Authors: Charles Clayton and Robert Rayburn
+Last date modified: December 1, 2016
+File: README.md
+Description: Contains documentation for the program.
 
 main class:
   Takes a window, grid, textblock, and series of buttens, then sets values for all objects.
