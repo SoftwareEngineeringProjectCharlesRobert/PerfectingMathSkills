@@ -1,8 +1,12 @@
 # PerfectingMathSkills
-352 Project
+352 Software Engineering Project
+
 Authors: Charles Clayton and Robert Rayburn
+
 Last date modified: May 11, 2017
+
 File: README.md
+
 Description: Contains documentation for the program.
 
 This project was completed as part of our undergraduate Software Engineering class at the University of Tennessee at Martin.
